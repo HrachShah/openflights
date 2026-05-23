@@ -55,7 +55,7 @@ class VRSParser(DatabaseConnector):
               dst_iata, dst_apid = self.airports[dst_icao]['iata'], self.airports[dst_icao]['apid']
               values = (airline_iata, airline_icao, alid, flight, src_iata, src_icao, src_apid, dst_iata, dst_icao, dst_apid)
               self.cursor.execute(insert_query, values)
-            except KeyError, e:
+            except KeyError as e:
               key = e.args[0]
               unknown_codes[key] += 1
     for code in sorted(unknown_codes.items(), key=operator.itemgetter(1)):
