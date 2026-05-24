@@ -26,17 +26,15 @@ class DatabaseConnector(object):
 
   def safe_execute(self, sql, params):
     if self.args.live_run:
-      self.write_cursor.execute(sql, params, )
+      self.write_cursor.execute(sql, params)
       print(".. %s : %d rows updated" % (sql % params, self.write_cursor.rowcount))
       self.write_cnx.commit()
       return self.write_cursor.lastrowid
     else:
       try:
         print(sql % params)
-      except TypeError as err:
-        print('TypeError', err)
-        print('SQL', sql)
-        print('Params', params)
+      except TypeError:
+        print('TypeError in SQL formatting: SQL=%s Params=%s' % (sql, params))
         exit()
 
       self.alid += 1
