@@ -2403,7 +2403,7 @@ function showStats(str) {
   let statsData;
   try {
     statsData = JSON.parse(str);
-  } catch (e) {
+  } catch (e: unknown) {
     result.append(
       "<i>" + gt.gettext("Statistics calculation failed!") + "</i>"
     );
@@ -2698,7 +2698,7 @@ function showTop10(responseText) {
   let topData;
   try {
     topData = JSON.parse(responseText);
-  } catch (e) {
+  } catch (e: unknown) {
     $("result").innerHTML =
       "<i>" + gt.gettext("Statistics calculation failed!") + "</i>";
     openPane("result");
@@ -3125,7 +3125,7 @@ function addNewAirline(alid, name, mode) {
 
   try {
     al_select.add(elOptNew, null); // standards compliant; doesn't work in IE
-  } catch (ex) {
+  } catch (ex: unknown) {
     al_select.add(elOptNew); // IE only
   }
 
