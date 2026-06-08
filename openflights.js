@@ -2410,8 +2410,8 @@ function showStats(str) {
     return;
   }
 
-  if ("error" in statsData) {
-    result.append(gt.gettext(response.error));
+  if (statsData && typeof statsData === "object" && "error" in statsData) {
+    result.append(gt.gettext(statsData.error));
     return;
   }
 
