@@ -6,7 +6,7 @@ import argparse
 import json
 import mysql.connector
 import time
-import urllib2
+import urllib.request
 
 DB = 'flightdb2'
 with open('api.key','r') as f:
@@ -16,7 +16,7 @@ def getTimeZone(lat, lng):
   timestamp = int(time.time())
   tz_api_url = 'https://maps.googleapis.com/maps/api/timezone/json?location=%s,%s&timestamp=%s&key=%s' % (
     lat, lng, timestamp, API_KEY)
-  response = json.loads(urllib2.urlopen(tz_api_url).read())
+  response = json.loads(urllib.request.urlopen(tz_api_url).read())
   if response["status"] == "OK":
     tz = response["rawOffset"] / 3600.0
     return (tz, response['timeZoneId'])
