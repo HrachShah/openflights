@@ -32,7 +32,11 @@ if ($wants_future_trips == null || !is_numeric($wants_future_trips)) {
 
 // Page number, in case we have more trips than can be returned in a single TripIt call.
 $tripit_page_number = $_REQUEST["page"] ?? null;
-if (!is_numeric($tripit_page_number) || $tripit_page_number < 2 || $tripit_page_number > 10000) {
+if (
+    filter_var($tripit_page_number, FILTER_VALIDATE_INT) === false
+    || $tripit_page_number < 2
+    || $tripit_page_number > 10000
+) {
     $tripit_page_number = 1;
 }
 
