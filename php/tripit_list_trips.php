@@ -161,7 +161,7 @@ function tripit_date_to_datetime($tripit_date) {
     } catch (Exception $e) {
         error_log("Couldn't parse TripIt timezone of " . $tripit_date->timezone . "; going with default.");
     }
-    return new DateTime($date_str);
+    return $dt;
 }
 
 function generate_pax_string($travelers) {
