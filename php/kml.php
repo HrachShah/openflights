@@ -38,10 +38,29 @@ $sth->execute(compact('uid'));
  * @return string|false
  */
 function parseIntervalString($interval) {
-    if ($interval === null) {
+    if (!is_string($interval)) {
         return false;
     }
-    [$h, $m, $s] = explode(':', $interval);
+
+    $parts = explode(':', $interval);
+    if (count($parts) === 2) {
+        [$h, $m] = $parts;
+        $s = '0';
+    } elseif (count($parts) === 3) {
+        [$h, $m, $s] = $parts;
+    } else {
+        return false;
+    }
+
+    if (
+        !ctype_digit($h)
+        || !ctype_digit($m)
+        || !ctype_digit($s)
+        || (int) $m > 59
+        || (int) $s > 59
+    ) {
+        return false;
+    }
 
     $intervalString = trimZero($h, 'H') . trimZero($m, 'M') . trimZero($s, 'S');
     return $intervalString !== ""
