@@ -41,7 +41,14 @@ function parseIntervalString($interval) {
     if ($interval === null) {
         return false;
     }
-    [$h, $m, $s] = explode(':', $interval);
+    $parts = explode(':', trim($interval));
+    if (count($parts) !== 3 || array_filter($parts, static fn($part) => !ctype_digit($part))) {
+        return false;
+    }
+    [$h, $m, $s] = $parts;
+    if ((int) $m > 59 || (int) $s > 59) {
+        return false;
+    }
 
     $intervalString = trimZero($h, 'H') . trimZero($m, 'M') . trimZero($s, 'S');
     return $intervalString !== ""
