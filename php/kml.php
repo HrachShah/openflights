@@ -74,7 +74,7 @@ function parseIntervalString($interval) {
  * @return string
  */
 function trimZero($value, $suffix) {
-    $value = trim($value, '0');
+    $value = ltrim($value, '0');
     return $value !== ""
         ? $value . $suffix
         : "";

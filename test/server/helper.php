@@ -73,6 +73,7 @@ class ParseIntervalStringTest extends UnitTestCase {
     public function test() {
         require_once dirname(__FILE__) . '/../../php/kml.php';
         $this->assertEqual(parseIntervalString("01:30"), "PT1H30M");
+        $this->assertEqual(parseIntervalString("10:00"), "PT10H");
         $this->assertEqual(parseIntervalString("01:30:45"), "PT1H30M45S");
         $this->assertFalse(parseIntervalString("01:60"));
         $this->assertFalse(parseIntervalString("01:30:60"));
