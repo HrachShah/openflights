@@ -17,7 +17,7 @@ var CONST = {
  */
 function importFlight(segmentId) {
   var form = $("#import" + segmentId);
-  if (form == null) {
+  if (form.length === 0) {
     // Shouldn't happen, but let's be defensive.
     setStatus(segmentId, "Internal Error: Couldn't find segment " + segmentId);
     return;
