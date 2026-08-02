@@ -38,7 +38,7 @@ $sth->execute(compact('uid'));
  * @return string|false
  */
 function parseIntervalString($interval) {
-    if (!is_string($interval)) {
+    if (!is_string($interval) || trim($interval) !== $interval || $interval === '') {
         return false;
     }
 

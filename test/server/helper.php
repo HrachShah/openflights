@@ -77,6 +77,9 @@ class ParseIntervalStringTest extends UnitTestCase {
         $this->assertEqual(parseIntervalString("01:30:45"), "PT1H30M45S");
         $this->assertFalse(parseIntervalString("01:60"));
         $this->assertFalse(parseIntervalString("01:30:60"));
+        $this->assertFalse(parseIntervalString(" 01:30"));
+        $this->assertFalse(parseIntervalString("01:30 "));
+        $this->assertFalse(parseIntervalString(""));
     }
 }
 
