@@ -117,7 +117,7 @@ if ($row) {
         "distance_mi" => round((int)$row["distance"]),
         "distance_km" => round((int)$row["distance"] * KM_PER_MILE),
         "distance" => round((int)$row["distance"] * $unitMultiplier),
-        "duration_s" => round((int)$row["distance"] * KM_PER_MILE),
+        "duration_s" => (int)$row["duration"],
     ];
     $response["average"] = [
         "distance" => round((int)$row["avg_distance"] * $unitMultiplier),
