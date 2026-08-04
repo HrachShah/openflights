@@ -51,6 +51,9 @@ $limit = $_POST["limit"] ?? "10";
 if ($limit == "-1") {
     $limit = "9999";
 }
+if (!is_string($limit) || !preg_match('/^[1-9][0-9]*$/', $limit)) {
+    json_error("The limit must be a positive integer.");
+}
 
 // Verify that this trip and user are public
 if ($uid == 1 && $trid && $trid != "0") {
