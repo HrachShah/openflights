@@ -28,7 +28,7 @@ $apid = $_POST["apid"];
 $uid = $_SESSION["uid"] ?? null;
 
 // https://github.com/jpatokal/openflights/issues/1447
-$ref = $_SERVER['HTTP_REFERER'];
+$ref = $_SERVER['HTTP_REFERER'] ?? '';
 if (strpos($ref, 'com.cathaypacific.iJourneyLite') !== false) {
     die(
         json_encode(

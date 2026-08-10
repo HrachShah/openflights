@@ -1,5 +1,7 @@
 <?php
 
+$_SERVER['HTTP_REFERER'] = '';
+
 include_once dirname(__FILE__) . '/config.php';
 
 // Store temporary airport ID
